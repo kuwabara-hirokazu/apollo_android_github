@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.android_architecture_base_flow.view.ui.home.HomeFragment"
+        android:name="com.example.apollo_android_github.view.ui.home.HomeFragment"
         android:label="home_fragment"
         tools:layout="@layout/fragment_home">
     </fragment>

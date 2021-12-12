@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android_architecture_base_flow">
+    package="com.example.apollo_android_github">
 
     <application
-        android:name=".App"
+        android:name="com.example.apollo_android_github.App"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Android_architecture_base_flow">
+        android:theme="@style/Theme.Apollo_android_github">
         <activity
-            android:name=".view.ui.MainActivity"
+            android:name="com.example.apollo_android_github.view.ui.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

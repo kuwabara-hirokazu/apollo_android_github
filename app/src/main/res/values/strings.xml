@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">android_architecture_base_flow</string>
+    <string name="app_name">apollo_android_github</string>
 
     <!-- エラー -->
     <string name="error_message_500">[500] システムエラーが発生いたしました。しばらく経ってから再度お試しください。</string>
