@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.apollo_android_github.databinding.FragmentHomeBinding
+import com.example.apollo_android_github.ext.showError
 import com.example.apollo_android_github.util.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -27,5 +28,11 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel.failure.observe(viewLifecycleOwner) {
+            showError(binding.root, it)
+        }
+
+        viewModel.getGithubInfo()
     }
 }
