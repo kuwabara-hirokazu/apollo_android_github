@@ -42,6 +42,9 @@ android {
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
         dependsOn("ktlintFormat")
     }
+    apollo {
+        generateKotlinModels.set(true)
+    }
 }
 
 dependencies {
