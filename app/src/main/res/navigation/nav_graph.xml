@@ -10,5 +10,18 @@
         android:name="com.example.apollo_android_github.view.ui.home.HomeFragment"
         android:label="home_fragment"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_github_info_to_webview"
+            app:destination="@+id/githubWebViewFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/githubWebViewFragment"
+        android:name="com.example.apollo_android_github.view.ui.webview.GithubWebViewFragment"
+        android:label="fragment_github_web_view"
+        tools:layout="@layout/fragment_github_web_view" >
+        <argument
+            android:name="issue"
+            app:argType="com.example.apollo_android_github.view.model.Issue" />
     </fragment>
 </navigation>

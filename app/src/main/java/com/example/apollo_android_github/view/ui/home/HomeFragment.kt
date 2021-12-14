@@ -9,9 +9,12 @@ import android.widget.ArrayAdapter
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.apollo_android_github.R
 import com.example.apollo_android_github.databinding.FragmentHomeBinding
 import com.example.apollo_android_github.ext.BindingAdapters.setImageUrl
 import com.example.apollo_android_github.ext.showError
+import com.example.apollo_android_github.ext.showToast
 import com.example.apollo_android_github.ext.switchLoading
 import com.example.apollo_android_github.util.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
@@ -50,6 +53,10 @@ class HomeFragment : Fragment() {
 
         viewModel.getGithubInfo()
 
+        binding.openIssue.setOnClickListener {
+            showGithubWebView()
+        }
+
         binding.repositoryNames.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 viewModel.githubInfo.value?.let { setIssues(position) }
@@ -57,6 +64,18 @@ class HomeFragment : Fragment() {
 
             override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
+    }
+
+    private fun showGithubWebView() {
+        val repositoryPosition = binding.repositoryNames.selectedItemPosition
+        val issuePosition = binding.issueNames.selectedItemPosition
+        if (viewModel.getIssueList(repositoryPosition).isEmpty()) {
+            showToast(R.string.select_issue)
+            return
+        }
+        val selectedIssue = viewModel.getIssueList(repositoryPosition)[issuePosition]
+        val action = HomeFragmentDirections.actionGithubInfoToWebview(selectedIssue)
+        findNavController().navigate(action)
     }
 
     private fun setRepositories() {
