@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">apollo_android_github</string>
+    
+    <string name="select_issue">issueを選択してください。</string>
+    <string name="open_issue">issueを開く</string>
 
     <!-- エラー -->
     <string name="error_message_500">[500] システムエラーが発生いたしました。しばらく経ってから再度お試しください。</string>
