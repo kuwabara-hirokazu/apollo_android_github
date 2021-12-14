@@ -1,0 +1,22 @@
+query Search($login: String!, $count: Int!) {
+    repositoryOwner(login: $login) {
+        login
+        avatarUrl
+        repositories(first: $count) {
+            nodes {
+                ...searchResultRepository
+            }
+        }
+    }
+}
+
+fragment searchResultRepository on Repository {
+    name
+    issues(last: $count) {
+        nodes {
+            id
+            title
+            url
+        }
+    }
+}
