@@ -3,8 +3,10 @@ package com.example.apollo_android_github.data.repository
 import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
 import com.apollographql.apollo.coroutines.toFlow
+import com.example.apollo_android_github.AddReactionMutation
 import com.example.apollo_android_github.SearchQuery
 import com.example.apollo_android_github.ViewerQuery
+import com.example.apollo_android_github.type.ReactionContent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
@@ -20,6 +22,13 @@ class GithubRepositoryImpl @Inject constructor(
                 val name = it.data?.viewer?.login ?: ""
                 searchRepository(name)
             }
+    }
+
+    override fun addReaction(
+        subjectId: String,
+        content: ReactionContent
+    ): Flow<Response<AddReactionMutation.Data>> {
+        return apolloClient.mutate(AddReactionMutation(subjectId, content)).toFlow()
     }
 
     private fun searchRepository(userName: String): Flow<Response<SearchQuery.Data>> {

@@ -32,12 +32,23 @@ class GithubWebViewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.url = args.issue.url
 
+        viewModel.saved.observe(viewLifecycleOwner) {
+            binding.githubWebView.apply {
+                clearCache(true)
+                reload()
+            }
+        }
+
         viewModel.failure.observe(viewLifecycleOwner) {
             showError(binding.root, it)
         }
 
         viewModel.loading.observe(viewLifecycleOwner) {
             binding.progressBar.switchLoading(it)
+        }
+
+        binding.addReaction.setOnClickListener {
+            args.issue.id?.let { id -> viewModel.addReaction(id) }
         }
     }
 }
