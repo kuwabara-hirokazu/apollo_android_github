@@ -9,11 +9,14 @@ import com.apollographql.apollo.ApolloClient
 import com.example.apollo_android_github.BuildConfig
 import com.example.apollo_android_github.data.source.local.PreferencesData
 import com.example.apollo_android_github.data.source.local.PreferencesDataImpl
+import com.example.apollo_android_github.data.source.remote.GithubRemote
+import com.example.apollo_android_github.data.source.remote.GithubRemoteImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -74,5 +77,12 @@ class DataModule {
     @Provides
     fun providePreferencesData(dataStore: DataStore<Preferences>): PreferencesData {
         return PreferencesDataImpl(dataStore)
+    }
+
+    @Singleton
+    @Provides
+    @ExperimentalCoroutinesApi
+    fun provideGithubRemote(apolloClient: ApolloClient): GithubRemote {
+        return GithubRemoteImpl(apolloClient)
     }
 }

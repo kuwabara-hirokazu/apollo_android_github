@@ -1,11 +1,9 @@
 package com.example.apollo_android_github.data.repository
 
-import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.api.Response
-import com.apollographql.apollo.coroutines.toFlow
 import com.example.apollo_android_github.AddReactionMutation
 import com.example.apollo_android_github.SearchQuery
-import com.example.apollo_android_github.ViewerQuery
+import com.example.apollo_android_github.data.source.remote.GithubRemote
 import com.example.apollo_android_github.type.ReactionContent
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -14,13 +12,13 @@ import javax.inject.Inject
 
 @ExperimentalCoroutinesApi
 class GithubRepositoryImpl @Inject constructor(
-    private val apolloClient: ApolloClient
+    private val remote: GithubRemote
 ) : GithubRepository {
     override fun getGithubData(): Flow<Response<SearchQuery.Data>> {
-        return apolloClient.query(ViewerQuery()).toFlow()
+        return remote.getGithubData()
             .flatMapLatest {
                 val name = it.data?.viewer?.login ?: ""
-                searchRepository(name)
+                remote.searchRepository(name)
             }
     }
 
@@ -28,10 +26,6 @@ class GithubRepositoryImpl @Inject constructor(
         subjectId: String,
         content: ReactionContent
     ): Flow<Response<AddReactionMutation.Data>> {
-        return apolloClient.mutate(AddReactionMutation(subjectId, content)).toFlow()
-    }
-
-    private fun searchRepository(userName: String): Flow<Response<SearchQuery.Data>> {
-        return apolloClient.query(SearchQuery(userName, 20)).toFlow()
+        return remote.addReaction(subjectId, content)
     }
 }
