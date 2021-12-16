@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">apollo_android_github</string>
     
+    <string name="github_info">Github Info</string>
     <string name="select_issue">issueを選択してください。</string>
     <string name="open_issue">issueを開く</string>
     <string name="add_stamp">+</string>
