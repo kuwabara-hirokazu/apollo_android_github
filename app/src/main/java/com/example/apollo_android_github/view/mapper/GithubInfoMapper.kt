@@ -16,7 +16,7 @@ class GithubInfoMapperImpl @Inject constructor() : GithubInfoMapper {
 
         return GithubInfo(
             user = owner?.login ?: "",
-            avatarUrl = owner?.avatarUrl as String?,
+            avatarUrl = owner?.avatarUrl as? String,
             repositories = repositoryList.map {
                 val issues = it?.fragments?.searchResultRepository?.issues?.nodes ?: listOf()
                 GithubRepositoryInfo(
@@ -25,7 +25,7 @@ class GithubInfoMapperImpl @Inject constructor() : GithubInfoMapper {
                         Issue(
                             id = repository?.id,
                             title = repository?.title,
-                            url = repository?.url as String?
+                            url = repository?.url as? String
                         )
                     }
                 )
