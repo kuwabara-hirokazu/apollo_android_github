@@ -7,9 +7,10 @@
     <string name="add_stamp">+</string>
 
     <!-- エラー -->
-    <string name="error_message_500">[500] システムエラーが発生いたしました。しばらく経ってから再度お試しください。</string>
-    <string name="error_message_503">[503] 只今、サーバーメンテナンス中です。しばらく経ってから再度お試しください。</string>
-    <string name="error_message_504">[504] タイムアウトが発生いたしました。しばらく経ってから再度お試しください。</string>
+    <string name="error_message_401">[401] 認証エラーが発生しました。</string>
+    <string name="error_message_500">[500] システムエラーが発生いたしました。</string>
+    <string name="error_message_503">[503] 只今、サーバーメンテナンス中です。</string>
+    <string name="error_message_504">[504] タイムアウトが発生いたしました。</string>
     <string name="error_message_unknown">不明なエラーが発生いたしました。</string>
     <string name="error_message_default">通信エラーです</string>
 
