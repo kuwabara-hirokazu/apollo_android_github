@@ -5,7 +5,7 @@ plugins {
     id 'dagger.hilt.android.plugin'
     id 'androidx.navigation.safeargs.kotlin'
     id 'org.jlleitschuh.gradle.ktlint' version "$ktlint_version"
-    id 'com.apollographql.apollo' version "$apollo_version"
+    id 'com.apollographql.apollo3' version "$apollo_version"
 }
 
 android {
@@ -42,9 +42,6 @@ android {
     tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
         dependsOn("ktlintFormat")
     }
-    apollo {
-        generateKotlinModels.set(true)
-    }
 }
 
 dependencies {
@@ -65,9 +62,7 @@ dependencies {
 
     // Web access
     implementation "com.squareup.okhttp3:logging-interceptor:$okhttp_version"
-    implementation "com.apollographql.apollo:apollo-runtime:$apollo_version"
-    implementation "com.apollographql.apollo:apollo-android-support:$apollo_version"
-    implementation "com.apollographql.apollo:apollo-coroutines-support:$apollo_version"
+    implementation "com.apollographql.apollo3:apollo-runtime:$apollo_version"
 
     // DataStore
     implementation "androidx.datastore:datastore-preferences:$datastore_version"
@@ -96,4 +91,9 @@ dependencies {
 }
 kapt {
     correctErrorTypes true
+}
+
+apollo {
+    packageName.set("com.example.apollo_android_github")
+    generateTestBuilders.set(true)
 }
