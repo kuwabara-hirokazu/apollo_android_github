@@ -1,6 +1,6 @@
 package com.example.apollo_android_github.data.repository
 
-import com.apollographql.apollo.api.Response
+import com.apollographql.apollo3.api.ApolloResponse
 import com.example.apollo_android_github.AddReactionMutation
 import com.example.apollo_android_github.SearchQuery
 import com.example.apollo_android_github.data.source.remote.GithubRemote
@@ -14,7 +14,7 @@ import javax.inject.Inject
 class GithubRepositoryImpl @Inject constructor(
     private val remote: GithubRemote
 ) : GithubRepository {
-    override fun getGithubData(): Flow<Response<SearchQuery.Data>> {
+    override fun getGithubData(): Flow<ApolloResponse<SearchQuery.Data>> {
         return remote.getGithubData()
             .flatMapLatest {
                 val name = it.data?.viewer?.login ?: ""
@@ -25,7 +25,7 @@ class GithubRepositoryImpl @Inject constructor(
     override fun addReaction(
         subjectId: String,
         content: ReactionContent
-    ): Flow<Response<AddReactionMutation.Data>> {
+    ): Flow<ApolloResponse<AddReactionMutation.Data>> {
         return remote.addReaction(subjectId, content)
     }
 }

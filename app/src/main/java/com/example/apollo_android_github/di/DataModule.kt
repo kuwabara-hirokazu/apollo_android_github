@@ -5,7 +5,8 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
-import com.apollographql.apollo.ApolloClient
+import com.apollographql.apollo3.ApolloClient
+import com.apollographql.apollo3.network.okHttpClient
 import com.example.apollo_android_github.BuildConfig
 import com.example.apollo_android_github.data.source.local.PreferencesData
 import com.example.apollo_android_github.data.source.local.PreferencesDataImpl
@@ -59,7 +60,7 @@ class DataModule {
     @Singleton
     @Provides
     fun provideApolloClient(okHttpClient: OkHttpClient): ApolloClient {
-        return ApolloClient.builder()
+        return ApolloClient.Builder()
             .serverUrl(GITHUB_SERVER_URL)
             .okHttpClient(okHttpClient)
             .build()
