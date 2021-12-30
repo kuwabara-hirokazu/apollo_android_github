@@ -1,6 +1,6 @@
 # Apolloライブラリを使ったサンプルアプリ
 ## Architecture
-<img src="https://user-images.githubusercontent.com/62511320/146396561-befbc913-7909-4500-beb0-1a210c73b9cb.png" width=80%>
+<img src="https://user-images.githubusercontent.com/62511320/147755060-b796abcf-154c-4c0c-909d-2bc48252de21.png" width=80%>
 
 [自作テンプレート](https://github.com/kuwabara-hirokazu/android_architecture_base_flow)を基盤に作成
 ## 使用ライブラリ
