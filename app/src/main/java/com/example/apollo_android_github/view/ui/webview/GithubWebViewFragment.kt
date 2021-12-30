@@ -10,8 +10,10 @@ import androidx.navigation.fragment.navArgs
 import com.example.apollo_android_github.databinding.FragmentGithubWebViewBinding
 import com.example.apollo_android_github.ext.showError
 import com.example.apollo_android_github.ext.switchLoading
+import com.example.apollo_android_github.type.ReactionContent
 import com.example.apollo_android_github.util.autoCleared
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.random.Random
 
 @AndroidEntryPoint
 class GithubWebViewFragment : Fragment() {
@@ -48,7 +50,8 @@ class GithubWebViewFragment : Fragment() {
         }
 
         binding.addReaction.setOnClickListener {
-            args.issue.id?.let { id -> viewModel.addReaction(id) }
+            val reaction = ReactionContent.values()[Random.nextInt(8)]
+            args.issue.id?.let { id -> viewModel.addReaction(id, reaction) }
         }
     }
 }

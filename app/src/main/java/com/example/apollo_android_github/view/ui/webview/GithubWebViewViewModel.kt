@@ -9,7 +9,6 @@ import com.example.apollo_android_github.util.Signal
 import com.example.apollo_android_github.view.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
-import kotlin.random.Random
 
 @HiltViewModel
 class GithubWebViewViewModel @Inject constructor(
@@ -20,12 +19,11 @@ class GithubWebViewViewModel @Inject constructor(
     private val _saved = MutableLiveData<Signal>()
     val saved: LiveData<Signal> = _saved
 
-    fun addReaction(subjectId: String) {
-        val reaction = ReactionContent.values()[Random.nextInt(8)]
+    fun addReaction(subjectId: String, reaction: ReactionContent) {
         repository.addReaction(subjectId, reaction)
             .execute(
                 onSuccess = { _saved.postValue(Signal) },
-                retry = { addReaction(subjectId) }
+                retry = { addReaction(subjectId, reaction) }
             )
     }
 }
